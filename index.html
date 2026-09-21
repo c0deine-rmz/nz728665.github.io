@@ -101,6 +101,7 @@
   .pill-spin {
     width: 34px;
     height: 34px;
+    border-radius: 50%;
     animation: coin 3.6s linear infinite;
     transform-style: preserve-3d;
   }
@@ -124,12 +125,10 @@
     margin-top: 12px;
   }
   ul.links {
-    opacity: 0;
-    animation: fadein 1s ease 3s forwards;
-  }
-  ul.links {
     list-style: none;
     border-top: 1px solid var(--line);
+    opacity: 0;
+    animation: fadein 1s ease 3s forwards;
   }
   ul.links li {
     opacity: 0;
@@ -212,10 +211,10 @@
 </header>
 
 <main>
-  <img class="ava" src="AVA_DATA_URI" alt="c0deine">
+  <img class="ava" src="data:image/jpeg;base64,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" alt="c0deine">
   <div class="name-row">
     <h1 id="name">c0deine</h1>
-    <img class="pill-spin" src="PILL_DATA_URI" alt="">
+    <img class="pill-spin" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/wAALCABIAEgBAREA/8QAHAAAAgIDAQEAAAAAAAAAAAAAAQcCCAADBgQF/8QAORAAAQIEBAUCAQgLAAAAAAAAAQIDAAQFEQYHEiEIEzFBYSJRMhQVFiNicYGRJDU2QkZTV5Sh0dL/2gAIAQEAAD8AplGQ+smOF/GuPZFqsVZ9GF6M8nU09NMqW+8kpBSpDVxdBuPUpQ8XiymEuFjKCgspNTkJ/EUwlQVzZ6aUhIIJOyGilNjsCDe9vJjsjk9k/wD07w5/Zj/ccni3hjydrzbqpSjTNBmnVFfOp00sAE9g2sqQE+ABFdc3+FPFuEpF6r4VnRimnN3U4y0wUTjSfflgkOADqUm/fSBFdiCDYixgRg3i7XCbw9yFHpsjjzHtMdVW1OB+nU+YtolUW9DjiO7hvqCVfDZJtfpZianFEkAm0eUvk9zvES5fvB5pA67iNjU0oG1z1hB8UWQ1MxtTZ/F2E5BTWLUJS44wyoJbqAHxAp/m6dwofFpAIubxRN5pxl5bLzam3EKKVoULFJGxBB6GHpwYZayeO8xXqtWWUP0fD6W5l1lYSUvvKUeU2pJvdHpUo+4TbvF95yYUtRFzHiUvaIFR63iOsdjvGazv3ghXvuI2tu26G0Up428upXD2KJbGlJaS1KVxxSZxpOlKW5pIBKkgAbLT6j19QUe4h6cFdDaoWQ0pUNKkTFam3px3UkpOlKi02LE7iyCoEWvq8XhuuOgn4hGvWCb3iJWCexgFYHcCMC/yjOZv1ghywFzCx4oaG1iHJevS5Cy9JtJn2NKSo62jewAO90lY72ve20fWyNpE1PZIYLW3XFMJ+Z2fqwLaeu3mOsVhefJ/aE/nEfovUgbJxCBGKwzVR0xEIicM1a+2I03jBhmrj+IkQDhmr3v8/twRhurg/r1v/EfDx7RZ6UwTX3ZmvNLCaXNEIKb3+pXsPaOL4PsSJrGSdNk1vuOzFJddkndagSkBRW2PCdCwAPsmG+XTc73iJeIO14HOUT1gc4+5iJfIPUwQ+Qb6toKniBcmFTxJYnTRMra698ocbeel/krBbVpUXHfSLfhqJ8AxXXhAx8zhbGkxQKi9y5KthCG1qPpbmEkhF+wCgopJ99N9hF1mpgOIuL/lEyvYd4GpJ8RHmdtjBUseR+ER1H3jzz82lhlSlEXtFPeLjHTVWqsthORe1oknC/OqF7c0j0ov0OlJJPlVtiDCDBsbxb/h3zrl69T5bD+JJ5KcQIVy2lrRYTiANiD05mxBG19iLm8PtidafSClQ3jcFg9Dt98Ek9bxHmCx1ER5J2pMS7alKUE28wjM+M35bDdPmKfTJxC68tKeS1pKwyD++vsLDcA7kkG1oqFNPvTUy7MzDinHnVlbi1G5Uom5J8kxqiTTi2nEuNLUhaCFJUk2II6EGHNlvn7XKDLtyOIGnatLtiyJhKwH0gCwBvssbdTvv1PSHfhrPTB9UbumssyzlwnlTY5K7kkC19j07E2uL2jpl5kUa9hVKcCNj+mNf9RzWJc68KUppwO1yVW4hRQWpdXOXqHUWTcfiSB5hLZiZ91CqMrlMNMOyQVsqbfILgH2E7hP3m59rHeEpMvvTL635h5x51Z1LW4oqUo+5J3Ma4//2Q==" alt="">
   </div>
   <div class="tagline">пока ты спишь — твое время уходит<span class="cursor" style="height:.9em"></span></div>
 
