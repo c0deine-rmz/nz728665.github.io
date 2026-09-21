@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>c0deine</title>
+<meta name="description" content="c0deine — pharmaceutical grade human">
+<meta property="og:title" content="c0deine">
+<style>
+  :root {
+    --bg: #000;
+    --fg: #fff;
+    --dim: #757575;
+    --line: #222;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: ui-monospace, "SF Mono", "Cascadia Mono", "JetBrains Mono", Consolas, monospace;
+    font-size: 15px;
+    line-height: 24px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--fg); color: var(--bg); }
+
+  header {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--dim);
+    letter-spacing: 0.04em;
+  }
+  header .mid { color: var(--fg); }
+  header .right { text-align: right; }
+
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 24px;
+    gap: 28px;
+  }
+
+  .ava {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.05);
+    border: 1px solid var(--line);
+    opacity: 0;
+    animation: fadein 1.4s ease .3s forwards;
+  }
+  @keyframes fadein { to { opacity: 1; } }
+
+  .name-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  h1 {
+    font-size: clamp(28px, 6vw, 44px);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    display: flex;
+  }
+  h1 .ch {
+    display: inline-block;
+    opacity: 0;
+    animation: pupp .4s linear forwards;
+  }
+  @keyframes pupp {
+    0% { transform: scale(1); opacity: 0; }
+    50% { transform: scale(1.12); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  .cursor {
+    display: inline-block;
+    width: 10px;
+    height: 1.1em;
+    background: var(--fg);
+    margin-left: 6px;
+    align-self: center;
+    animation: blinker 1s linear infinite;
+  }
+  @keyframes blinker {
+    0% { opacity: 1; } 49% { opacity: 1; }
+    50% { opacity: 0; } 100% { opacity: 0; }
+  }
+
+  .pill-spin {
+    width: 34px;
+    height: 34px;
+    animation: coin 3.6s linear infinite;
+    transform-style: preserve-3d;
+  }
+  @keyframes coin {
+    0% { transform: rotateY(0deg); }
+    100% { transform: rotateY(360deg); }
+  }
+
+  .tagline {
+    color: var(--dim);
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-align: center;
+    opacity: 0;
+    animation: fadein 1s ease 2.4s forwards;
+  }
+
+  nav {
+    width: 100%;
+    max-width: 560px;
+    margin-top: 12px;
+  }
+  ul.links {
+    opacity: 0;
+    animation: fadein 1s ease 3s forwards;
+  }
+  ul.links {
+    list-style: none;
+    border-top: 1px solid var(--line);
+  }
+  ul.links li {
+    opacity: 0;
+    transform: translateY(14px);
+    animation: rowin .6s ease forwards;
+    border-bottom: 1px solid var(--line);
+    transition: color .1s ease-in-out;
+  }
+  ul.links li:nth-child(1) { animation-delay: 3.1s; }
+  ul.links li:nth-child(2) { animation-delay: 3.35s; }
+  ul.links li:nth-child(3) { animation-delay: 3.6s; }
+  @keyframes rowin {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  ul.links:has(> li:hover) > li:not(:hover) { color: #4a4a4a; }
+  ul.links:has(> li:hover) > li:not(:hover) .handle { color: #333; }
+
+  ul.links a, ul.links button {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    width: 100%;
+    padding: 20px 4px;
+    color: inherit;
+    background: none;
+    border: none;
+    font: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: left;
+  }
+  .lbl { font-size: 17px; }
+  .lbl .ch { display: inline-block; }
+  li:hover .lbl .ch { animation: pupp2 .4s linear; }
+  @keyframes pupp2 {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.18); }
+    100% { transform: scale(1); }
+  }
+  .handle { color: var(--dim); font-size: 13px; transition: color .1s ease-in-out; }
+  li:hover .handle { color: var(--fg); }
+
+  footer {
+    padding: 18px 24px;
+    border-top: 1px solid var(--line);
+    font-size: 12px;
+    color: #4a4a4a;
+    display: flex;
+    justify-content: space-between;
+    letter-spacing: 0.04em;
+  }
+
+  .toast {
+    position: fixed;
+    left: 50%;
+    bottom: 72px;
+    transform: translateX(-50%) translateY(10px);
+    background: var(--fg);
+    color: var(--bg);
+    padding: 6px 14px;
+    font-size: 13px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s, transform .2s;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  @media (max-width: 560px) {
+    .ava { width: 96px; height: 96px; }
+    footer .r { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div>rx only</div>
+  <div class="mid">c0deine</div>
+  <div class="right">est. 2026</div>
+</header>
+
+<main>
+  <img class="ava" src="AVA_DATA_URI" alt="c0deine">
+  <div class="name-row">
+    <h1 id="name">c0deine</h1>
+    <img class="pill-spin" src="PILL_DATA_URI" alt="">
+  </div>
+  <div class="tagline">пока ты спишь — твое время уходит<span class="cursor" style="height:.9em"></span></div>
+
+  <nav>
+    <ul class="links" id="links">
+      <li>
+        <a href="https://steamcommunity.com/profiles/76561199547875122/" target="_blank" rel="noopener">
+          <span class="lbl" data-split>steam</span>
+          <span class="handle">/c0deine</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://t.me/reofc" target="_blank" rel="noopener">
+          <span class="lbl" data-split>telegram</span>
+          <span class="handle">@reofc</span>
+        </a>
+      </li>
+      <li>
+        <button id="dc" type="button">
+          <span class="lbl" data-split>discord</span>
+          <span class="handle">nikit0siq</span>
+        </button>
+      </li>
+    </ul>
+  </nav>
+</main>
+
+<footer>
+  <span>не является лекарственным средством</span>
+  <span class="r">10100111010</span>
+</footer>
+
+<div class="toast" id="toast">скопировано</div>
+
+<script>
+  const nameEl = document.getElementById('name');
+  const chars = nameEl.textContent.split('');
+  nameEl.textContent = '';
+  chars.forEach((c, i) => {
+    const s = document.createElement('span');
+    s.className = 'ch';
+    s.textContent = c;
+    s.style.animationDelay = (1.1 + i * 0.18) + 's';
+    nameEl.appendChild(s);
+  });
+
+  document.querySelectorAll('[data-split]').forEach(el => {
+    const t = el.textContent.split('');
+    el.textContent = '';
+    t.forEach((c, i) => {
+      const s = document.createElement('span');
+      s.className = 'ch';
+      s.textContent = c;
+      s.style.animationDelay = (i * 0.06) + 's';
+      el.appendChild(s);
+    });
+  });
+
+  const toast = document.getElementById('toast');
+  document.getElementById('dc').addEventListener('click', () => {
+    navigator.clipboard.writeText('nikit0siq').catch(() => {});
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 1400);
+  });
+</script>
+
+</body>
+</html>
